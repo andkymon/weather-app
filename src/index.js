@@ -11,7 +11,7 @@ async function getWeatherInfoObject(location) {
 }
 
 // Only extract necessary information
-function extractCurrentWeatherInformation(weatherInfoObject) {
+function filterCurrentWeatherInformation(weatherInfoObject) {
     // TODO: Split these into own functions
     // Location (City, Country)
     let location;
@@ -29,7 +29,8 @@ function extractCurrentWeatherInformation(weatherInfoObject) {
     }
 
     //Date (Day, MM/DD/YYYY)
-    const date = format(new Date(), "iiii, P");
+    const dateInMilliseconds = weatherInfoObject.currentConditions.datetimeEpoch * 1000;
+    const date = format(new Date(dateInMilliseconds), "p, iiii, P");
     console.log(date);
 
     //Temperature (Celcius)
@@ -69,20 +70,11 @@ const button = document.querySelector("button");
 
 const weatherInfo = document.querySelector("#weather-info-wrapper");
 
-button.addEventListener("click", async () => {
-    weatherInfo.style.display = "block";
-    const location = input.value;
-    const weatherInfoObject = await getWeatherInfoObject(location);
-    extractCurrentWeatherInformation(weatherInfoObject);
-});
+button.addEventListener("click", searchEventHandler);
 
 input.addEventListener("keypress", async (event) => {
     if (event.key === "Enter") {
-        weatherInfo.style.display = "block";
-
-        const location = input.value;
-        const weatherInfoObject = await getWeatherInfoObject(location);
-        extractCurrentWeatherInformation(weatherInfoObject);
+        searchEventHandler();
     }
 });
 
@@ -90,5 +82,38 @@ document.addEventListener("DOMContentLoaded", () => {
     weatherInfo.style.display = "none";
 });
 
-//INITIALLY HIDE WEATHER INFO ON LOAD
-//TITLE AND INPUT CENTERED
+//
+
+async function searchEventHandler() {
+    
+    const locationInput = input.value;
+    const weatherInfoObjectRaw = await getWeatherInfoObject(locationInput);
+    const weatherInfoObject = filterCurrentWeatherInformation(weatherInfoObjectRaw);
+
+    // Display UI once information is ready
+    weatherInfo.style.display = "block";
+
+    // Update UI with extracted info
+    const location = document.querySelector("#location");
+    location.textContent = weatherInfoObject.location;
+
+    const date = document.querySelector("#date");
+    date.textContent = weatherInfoObject.date;
+
+    const temperature = document.querySelector("#temperature");
+    temperature.textContent = weatherInfoObject.temperature;
+
+    //TODO: Celcius and Farenheit conversion
+
+    const condition = document.querySelector("#condition");
+    condition.textContent = weatherInfoObject.condition;
+
+    const precipitation = document.querySelector("#precipitation");
+    precipitation.textContent = `Precipitation: ${weatherInfoObject.precipitation}%`;
+
+    const humidity = document.querySelector("#humidity");
+    humidity.textContent = `Humidity: ${weatherInfoObject.humidity}%`;
+
+    const windSpeed = document.querySelector("#wind-speed");
+    windSpeed.textContent = `Wind: ${weatherInfoObject.windSpeed} km/h`;
+}
