@@ -1,5 +1,6 @@
 // eslint-disable-next-line 
-import css from "./style.css"
+import css from "./style.css";
+import { format } from "date-fns";
 
 const input = document.querySelector("input");
 const button = document.querySelector("button");
@@ -11,16 +12,53 @@ async function getWeatherInfoObject(location) {
     return weatherInfoObject;
 }
 
-function extractWeatherInformation(weatherInfoObject) {
+function extractCurrentWeatherInformation(weatherInfoObject) {
+    //City, Country
     const addressArray = weatherInfoObject.resolvedAddress.split(", ");
     const city = addressArray[0];
     const country = addressArray[addressArray.length - 1];
-    console.log(city + country);
+    if (city === country) {
+        console.log(country);
+    } else {
+        console.log(city + ", " + country);
+    }
+
+    //Temperature
+    const temperature = weatherInfoObject.currentConditions.temp;
+    console.log(temperature + "°C");
+
+    //Weather condition
+    const condition = weatherInfoObject.currentConditions.conditions;
+    console.log(condition);
+
+    //Day and Date
+    const day = format(new Date(), "iiii");
+    const date = format(new Date(), "P");
+    console.log(day + ", " + date);
+
+    //Precipitation
+    const precipitation = weatherInfoObject.currentConditions.precipprob;
+    console.log("Precipitation: " + precipitation + "%");
+
+    //Humidity
+    const humidity = weatherInfoObject.currentConditions.humidity;
+    console.log("Humidity: " + humidity + "%");
+
+    //Wind
+    const windSpeed = weatherInfoObject.currentConditions.windspeed;
+    console.log("Wind: " + windSpeed + "km/h");
 }
 
 button.addEventListener("click", async () => {
     const location = input.value;
     const weatherInfoObject = await getWeatherInfoObject(location);
-    extractWeatherInformation(weatherInfoObject);
+    extractCurrentWeatherInformation(weatherInfoObject);
 });
 
+input.addEventListener("keypress", async (event) => {
+    if (event.key === "Enter") {
+        const location = input.value;
+        const weatherInfoObject = await getWeatherInfoObject(location);
+        extractCurrentWeatherInformation(weatherInfoObject);
+    }
+});
