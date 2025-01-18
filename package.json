@@ -25,6 +25,7 @@
     "webpack-dev-server": "^5.2.0"
   },
   "dependencies": {
-    "@jridgewell/gen-mapping": "^0.3.8"
+    "@jridgewell/gen-mapping": "^0.3.8",
+    "date-fns": "^4.1.0"
   }
 }
