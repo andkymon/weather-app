@@ -38,6 +38,10 @@ button:hover {
 
 body {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
@@ -47,14 +51,11 @@ h1 {
 
 #input-wrapper {
     text-align: center;
+    margin-bottom: 16px;
 } 
 
 #weather-info-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
+    width: max-content;
     border: 2px solid black;
     padding: 24px;
 }
@@ -69,6 +70,7 @@ h1 {
 
 #condition-icon-and-temperature-wrapper {
     display: flex;
+    justify-content: center;
     align-items: center;
     margin: 16px 0;
 }
