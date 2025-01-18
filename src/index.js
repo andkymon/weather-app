@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
 //
 
 async function searchEventHandler() {
-    
     const locationInput = input.value;
     const weatherInfoObjectRaw = await getWeatherInfoObject(locationInput);
     const weatherInfoObject = filterCurrentWeatherInformation(weatherInfoObjectRaw);
@@ -101,12 +100,33 @@ async function searchEventHandler() {
     date.textContent = weatherInfoObject.date;
 
     const temperature = document.querySelector("#temperature");
-    temperature.textContent = weatherInfoObject.temperature;
+    const temperatureInCelcius = Math.round(weatherInfoObject.temperature);
+    const temperatureInFahrenheit = Math.round((weatherInfoObject.temperature * (9 / 5)) + 32);
 
-    //TODO: Celcius and Farenheit conversion
+    //Celcius and Farenheit conversion
+    const celciusButton = document.querySelector("#celcius-button");
+    const fahrenheitButton =  document.querySelector("#fahrenheit-button");
+
+    celciusButton.addEventListener("click", () => {
+        celciusButton.disabled = true;
+        fahrenheitButton.disabled = false;
+        temperature.textContent = temperatureInCelcius;
+    });
+
+    fahrenheitButton.addEventListener("click", () => {
+        fahrenheitButton.disabled = true;
+        celciusButton.disabled = false;
+        temperature.textContent = temperatureInFahrenheit;
+    });
+
+    // Toggle on search to refresh temperature
+    fahrenheitButton.click();
+    celciusButton.click();
 
     const condition = document.querySelector("#condition");
     condition.textContent = weatherInfoObject.condition;
+
+    //TODO: Icon based on condition
 
     const precipitation = document.querySelector("#precipitation");
     precipitation.textContent = `Precipitation: ${weatherInfoObject.precipitation}%`;
