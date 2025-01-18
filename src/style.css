@@ -114,3 +114,7 @@ h1 {
     justify-content: center;
     margin-top: 0px;
 }
+
+#error {
+    display: none;
+}
