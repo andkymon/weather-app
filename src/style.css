@@ -1,0 +1,114 @@
+/*
+Josh's Custom CSS Reset
+https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+}
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+    display: inline-block;
+    max-width: 100%;
+}
+input, button, textarea, select {
+    font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+p {
+    text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+button {
+    line-height: 1;
+}
+button:hover {
+    cursor: pointer;
+}
+
+body {
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+}
+
+#input-wrapper {
+    text-align: center;
+} 
+
+#weather-info-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 2px solid black;
+    padding: 24px;
+}
+
+#weather-info-wrapper > div {
+    text-align: center;
+}
+
+#location {
+    font-size: 1.5rem;
+}
+
+#condition-icon-and-temperature-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+}
+
+/* To be changed into actual icons */
+#condition-icon {
+    height: 64px;
+    width: 64px;
+    background-color: black;
+    margin-right: 8px;
+}
+
+#temperature-wrapper {
+    display: flex;
+    align-items: start;
+}
+
+#temperature {
+    font-size: 5rem;
+    line-height: 1;
+}
+
+#temperature-buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+
+    /* This is a hack to align the buttons with the temperature */
+    position: relative;
+    top: 10px; 
+}
+
+#condition {
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+}
+
+#other-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0px;
+}

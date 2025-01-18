@@ -6,10 +6,31 @@
     <title>Hot or Not</title>
 </head>
 <body>
-    <h1>Hot or Not</h1>
-    <div>
+    <h1 id="title">Hot or Not</h1>
+    <div id="input-wrapper">
         <input placeholder="Search for a city/country">
         <button>Search</button>
+    </div>
+    <div id="weather-info-wrapper">
+        <div id="location">Manila, Philippines</div>
+        <div id="date">Saturday, 1/18/2025</div>
+        <div id="condition-icon-and-temperature-wrapper">
+            <img id="condition-icon"></img>
+            <div id="temperature-wrapper">
+                <span id="temperature">28</span>
+                <div id="temperature-buttons-wrapper">
+                    <button>°C</button>
+                    <hr>
+                    <button>°F</button>
+                </div>
+            </div>
+        </div>
+        <div id="condition">Cloudy</div>
+        <div id="other-info-wrapper">
+            <span>Precipitation: 30%</span>
+            <span>Humidity: 80%</span>
+            <span>Wind: 10 km/h</span>
+        </div>
     </div>
 </body>
 </html>
