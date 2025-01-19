@@ -1,6 +1,9 @@
 // eslint-disable-next-line 
 import css from "./style.css";
 import { getWeatherInformationFiltered } from "./data.js";
+import clearday from "./assets/clear-day.svg";
+
+console.log(clearday);
 
 const searchInput = document.querySelector("#input-wrapper > input");
 const searchButton = document.querySelector("#input-wrapper > button");
@@ -32,6 +35,15 @@ async function displayWeatherInformation() {
         const date = document.querySelector("#date");
         date.textContent = weatherInfoObject.date;
 
+        const conditionIcon = document.querySelector("#condition-icon");
+        console.log(weatherInfoObject.conditionIcon);
+        
+        // Use import() for dynamic expressions as path changes after bundling
+        import(`./assets/${weatherInfoObject.conditionIcon}.svg`).then((module) => {
+            const iconPath = module.default;
+            conditionIcon.setAttribute("src", iconPath);
+        });
+        
         temperatureInCelcius = Math.round(weatherInfoObject.temperature);
         temperatureInFahrenheit = Math.round((weatherInfoObject.temperature * (9 / 5)) + 32);
 
@@ -41,8 +53,7 @@ async function displayWeatherInformation() {
 
         const condition = document.querySelector("#condition");
         condition.textContent = weatherInfoObject.condition;
-        //TODO: Icon based on condition
-
+ 
         const precipitation = document.querySelector("#precipitation");
         precipitation.textContent = `Precipitation: ${weatherInfoObject.precipitation}%`;
 
