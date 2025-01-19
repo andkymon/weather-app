@@ -70,11 +70,13 @@ const button = document.querySelector("button");
 
 const weatherInfo = document.querySelector("#weather-info-wrapper");
 
-button.addEventListener("click", searchEventHandler);
+button.addEventListener("click", ()=> {
+    searchEventHandler().catch(()=> document.querySelector("#error").style.display = "block");
+});
 
-input.addEventListener("keypress", async (event) => {
+input.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
-        searchEventHandler();
+        searchEventHandler().catch(()=> document.querySelector("#error").style.display = "block");
     }
 });
 
@@ -85,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //
 
 async function searchEventHandler() {
+    document.querySelector("#error").style.display = "none";
     const locationInput = input.value;
     const weatherInfoObjectRaw = await getWeatherInfoObject(locationInput);
     const weatherInfoObject = filterCurrentWeatherInformation(weatherInfoObjectRaw);
