@@ -79,7 +79,6 @@ h1 {
 #condition-icon {
     height: 64px;
     width: 64px;
-    background-color: black;
     margin-right: 8px;
 }
 
@@ -89,7 +88,7 @@ h1 {
 }
 
 #temperature {
-    font-size: 5rem;
+    font-size: 4rem;
     line-height: 1;
 }
 
@@ -101,6 +100,16 @@ h1 {
     /* This is a hack to align the buttons with the temperature */
     position: relative;
     top: 10px; 
+}
+
+#temperature-buttons-wrapper > button {
+    border: none;
+    background-color: transparent;
+    color: gray;
+}
+
+#temperature-buttons-wrapper > button:disabled {
+    color: black;
 }
 
 #condition {
