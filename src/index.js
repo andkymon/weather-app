@@ -1,9 +1,6 @@
 // eslint-disable-next-line 
 import css from "./style.css";
 import { getWeatherInformationFiltered } from "./data.js";
-import clearday from "./assets/clear-day.svg";
-
-console.log(clearday);
 
 const searchInput = document.querySelector("#input-wrapper > input");
 const searchButton = document.querySelector("#input-wrapper > button");
@@ -37,7 +34,7 @@ async function displayWeatherInformation() {
 
         const conditionIcon = document.querySelector("#condition-icon");
         console.log(weatherInfoObject.conditionIcon);
-        
+
         // Use import() for dynamic expressions as path changes after bundling
         import(`./assets/${weatherInfoObject.conditionIcon}.svg`).then((module) => {
             const iconPath = module.default;
