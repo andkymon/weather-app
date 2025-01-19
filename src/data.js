@@ -27,6 +27,9 @@ function filterWeatherInformation(weatherInfoObject) {
     const dateInMilliseconds = weatherInfoObject.currentConditions.datetimeEpoch * 1000;
     const date = format(new Date(dateInMilliseconds), "p, iiii, P");
 
+    //Weather condition icon
+    const conditionIcon = weatherInfoObject.currentConditions.icon;
+
     //Temperature (Celcius)
     const temperature = weatherInfoObject.currentConditions.temp;
 
@@ -45,6 +48,7 @@ function filterWeatherInformation(weatherInfoObject) {
     return {
         location,
         date,
+        conditionIcon,
         temperature,
         condition,
         precipitation,
