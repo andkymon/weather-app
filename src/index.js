@@ -29,9 +29,6 @@ async function displayWeatherInformation() {
         const location = document.querySelector("#location");
         location.textContent = weatherInfoObject.location;
 
-        const date = document.querySelector("#date");
-        date.textContent = weatherInfoObject.date;
-
         const conditionIcon = document.querySelector("#condition-icon");
         console.log(weatherInfoObject.conditionIcon);
 

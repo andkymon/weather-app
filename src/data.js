@@ -1,9 +1,8 @@
-import { format } from "date-fns";
-
 // Fetch the data and parse it as an object
 async function getWeatherInformationRaw(locationInput) {
     const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${locationInput}?unitGroup=metric&key=2GGFS36ASKSN8ZDNPTTML7AZW&contentType=json`);
     const weatherInfoObject = await response.json();
+    console.log(weatherInfoObject);
     return weatherInfoObject;
 }
 
@@ -22,10 +21,6 @@ function filterWeatherInformation(weatherInfoObject) {
         location = city + ", " + country;
         console.log(location);
     }
-
-    //Date (Day, MM/DD/YYYY)
-    const dateInMilliseconds = weatherInfoObject.currentConditions.datetimeEpoch * 1000;
-    const date = format(new Date(dateInMilliseconds), "p, iiii, P");
 
     //Weather condition icon
     const conditionIcon = weatherInfoObject.currentConditions.icon;
@@ -47,7 +42,6 @@ function filterWeatherInformation(weatherInfoObject) {
 
     return {
         location,
-        date,
         conditionIcon,
         temperature,
         condition,
