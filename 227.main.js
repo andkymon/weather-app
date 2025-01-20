@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkhot_or_not=self.webpackChunkhot_or_not||[]).push([[227],{227:(o,s,t)=>{o.exports=t.p+"207b14093cc421b50195.svg"}}]);
