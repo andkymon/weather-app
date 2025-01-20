@@ -54,6 +54,21 @@ h1 {
     margin-bottom: 16px;
 } 
 
+#loader {
+    display: none;
+    border: 8px solid lightgray; 
+    border-top: 8px solid black; 
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    animation: spin 2s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 #weather-info-wrapper {
     width: max-content;
     border: 2px solid black;

@@ -15,12 +15,19 @@ let temperatureInFahrenheit;
 
 async function displayWeatherInformation() {
     try {
-        // Hide error messages if visible
+        // Hide weather info div or error messages if visible
+        weatherInfoDiv.style.display = "none";
         document.querySelector("#error").style.display = "none";
+
+        // Display loader while waiting
+        document.querySelector("#loader").style.display = "block";
 
         // Get data to display based on input 
         const locationInput = searchInput.value;
         const weatherInfoObject = await getWeatherInformationFiltered(locationInput);
+
+        // Hide loader after waiting
+        document.querySelector("#loader").style.display = "none";
 
         // Display weather information once ready
         weatherInfoDiv.style.display = "block";
@@ -60,6 +67,7 @@ async function displayWeatherInformation() {
         console.error(error);
         weatherInfoDiv.style.display = "none";
         document.querySelector("#error").style.display = "block";
+        document.querySelector("#loader").style.display = "none";
     }
 }
 
