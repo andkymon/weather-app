@@ -84,12 +84,15 @@ h1 {
     display: flex;
     border: 1px solid gray;
     border-radius: 8px;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    height: 48px;
+    width: max-content;
 } 
 
 #input-wrapper > input {
     border-radius: 8px 0 0 8px;
     border: none;
+    width: 300px;
 }
 
 #input-wrapper > input:focus {
@@ -104,6 +107,11 @@ h1 {
 #input-wrapper > button {
     border-radius: 0 8px 8px 0;
     border: none;
+    padding: 0px 8px;
+}
+
+#input-wrapper > button:hover {
+    filter: brightness(90%);
 }
 
 #loader {
